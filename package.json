@@ -1,0 +1,25 @@
+{
+    "name": "employee_tracker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "console.table": "^0.10.0",
+        "inquirer": "^7.3.3",
+        "mysql2": "^2.1.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marioviana07/Employee_tracker.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/marioviana07/Employee_tracker/issues"
+    },
+    "homepage": "https://github.com/marioviana07/Employee_tracker#readme"
+}
