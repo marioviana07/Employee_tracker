@@ -1,4 +1,30 @@
-DROP TABLE IF EXISTS parties;
-DROP TABLE IF EXISTS candidates;
-DROP TABLE IF EXISTS voters;
-DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS Department;
+DROP TABLE IF EXISTS Role;
+DROP TABLE IF EXISTS Employee;
+
+CREATE TABLE Department (
+  id INTEGER AUTO_INCREMENT NOT NULL,
+  name VARCHAR(30),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Role (
+  id INTEGER AUTO_INCREMENT NOT NULL,
+  title VARCHAR(30),
+  department_id INTEGER,
+  salary DECIMAL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Employee (
+  id INTEGER AUTO_INCREMENT NOT NULL,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  role_id INTEGER,
+  manager_id INTEGER,
+  PRIMARY KEY (id)
+  CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE,
+  CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee (id) ON DELETE CASCADE
+);
+
+
