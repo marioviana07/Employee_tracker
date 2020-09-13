@@ -30,6 +30,12 @@ class EmployeeDB {
             LEFT JOIN employee manager ON manager.id = employee.manager_id`
         );
     };
+
+    getManager() {
+        return this.connection.promise().query(
+            `SELECT * FROM employee`
+        );
+    }
 };
 
 module.exports = new EmployeeDB(connection)
