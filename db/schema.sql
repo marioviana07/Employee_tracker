@@ -27,5 +27,3 @@ CREATE TABLE employee (
   INDEX man_ind (manager_id),
   PRIMARY KEY (id)
 );
-
-

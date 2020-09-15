@@ -34,7 +34,7 @@ const newPrompt = () => {
         } else if (answer.initialPrompt == "Add a role") {
             return addRole();
 
-        } else if (answer.initialPrompt == "Add a employee") {
+        } else if (answer.initialPrompt == "Add an employee") {
             return addEmployee();
 
         } else if (answer.initialPrompt == "Update an employee role") {
@@ -55,7 +55,7 @@ const newPrompt = () => {
         } else if (answer.initialPrompt == "Delete a role") {
             return deleteRole();
 
-        } else if (answer.initialPrompt == "Delete a employee") {
+        } else if (answer.initialPrompt == "Delete an employee") {
             return deleteEmployee();
 
         } else if (answer.initialPrompt == "EXIT") {
@@ -98,7 +98,7 @@ function addDepartment() {
         name: 'name',
         message: "What is the name of the department?"
     }, ]).then(res => {
-        db.addDepartment = (res.name)
+        db.addDepartment(res.name)
         console.log("New department has been created")
         newPrompt()
     })
@@ -132,7 +132,7 @@ function addRole() {
 }
 
 function addEmployee() {
-    promise.all([db.getRoles(), db.getManager()])
+    Promise.all([db.getRoles(), db.getManager()])
         .then(([
             [roles],
             [managers]
@@ -184,7 +184,7 @@ function updateRole() {
                                     type: "list",
                                     name: "rolePrompt",
                                     message: "Which employee role do you want to update?",
-                                    choices: roles.map(role => ({ name: role.title, value: role_id })),
+                                    choices: roles.map(role => ({ name: role.title, value: role.id })),
                                 }])
                                 .then(res => db.updateRole(employee_id, res.rolePrompt))
                                 .then(() => console.log("Role has been update!!!"))
@@ -210,8 +210,8 @@ function updateManager() {
                             inquirer.prompt([{
                                     type: "list",
                                     name: "managerPrompt",
-                                    message: "Which manger do you want to update? (By employee)",
-                                    choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.first_name}`, value: employee.id })),
+                                    message: "Which manager do you want to update? (By employee)",
+                                    choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.last_name}`, value: employee.id })),
                                 }])
                                 .then(manageres => db.updateManager(employee_id, manageres.managerPrompt))
                                 .then(() => console.log("The employee's manager has been update!"))
