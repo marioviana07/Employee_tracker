@@ -23,4 +23,4 @@ This program works under the terminal functionality, to start running it we must
 
 # Contribution
 
-By Mario Viana(https://github.com/marioviana07/Employee_tracker)
+By [Mario Viana](https://github.com/marioviana07/Employee_tracker)
