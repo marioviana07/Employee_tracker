@@ -228,7 +228,7 @@ function viewByManager() {
                 type: 'list',
                 name: 'managerPrompt',
                 message: "Which manager do you want to view? (By employees)",
-                choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.first_name}`, value: employee.id })),
+                choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.last_name}`, value: employee.id })),
             }, ])
         }, ).then(manageres => {
             db.viewByManager(manageres.managerPrompt)
