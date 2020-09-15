@@ -1,7 +1,7 @@
 # Employee Tracker
 
 
-## [Click to watch the Video Tutorial](https://drive.google.com/file/d/1-bqVIk4zc7GhzHUy9IfIa3xG9OgaAVYS/view)
+## [Click to watch the Tutorial Video](https://drive.google.com/file/d/1-bqVIk4zc7GhzHUy9IfIa3xG9OgaAVYS/view)
 
 
 # Description
@@ -23,4 +23,4 @@ This program works under the terminal functionality, to start running it we must
 
 # Contribution
 
-By Mario Viana
+By Mario Viana(https://github.com/marioviana07/Employee_tracker)
