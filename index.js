@@ -221,6 +221,24 @@ function updateManager() {
         });
 };
 
+function viewByManager() {
+    db.getEmployees()
+        .then(([employees]) => {
+            return inquirer.prompt([{
+                type: 'list',
+                name: 'managerPrompt',
+                message: "Which manager do you want to view? (By employees)",
+                choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.first_name}`, value: employee.id })),
+            }, ])
+        }, ).then(manageres => {
+            db.viewByManager(manageres.managerPrompt)
+                .then(([rows]) => {
+                    let employees = rows;
+                    console.table(employees);
+                }).then(() => newPrompt());
+        })
+};
+
 function viewByDepartment() {
     db.getDepartments()
         .then(([departments]) => {
@@ -241,21 +259,51 @@ function viewByDepartment() {
         })
 };
 
-function viewByManager() {
+function deleteDepartment() {
+    db.getDepartments()
+        .then(([departments]) => {
+            return inquirer.prompt([{
+                type: 'list',
+                name: 'departmentPrompt',
+                message: 'Which departmen do you want to delete?',
+                choices: departments.map(department => ({ name: department.name, value: department.id })),
+            }, ])
+        }, ).then(({ departmentPrompt }) => {
+            db.deleteDepartment(departmentPrompt)
+            console.log("Departement was deleted!")
+            newPrompt()
+        })
+};
+
+function deleteRole() {
+    db.getRoles()
+        .then(([roles]) => {
+            return inquirer.prompt([{
+                type: 'list',
+                name: 'rolePrompt',
+                message: 'Which role do you want to delete?',
+                choices: roles.map(role => ({ name: role.title, value: role.id })),
+            }, ])
+        }, ).then(({ rolePrompt }) => {
+            db.deleteRole(rolePrompt)
+            console.log("Role was deleted!")
+            newPrompt()
+        })
+};
+
+function deleteEmployee() {
     db.getEmployees()
         .then(([employees]) => {
             return inquirer.prompt([{
                 type: 'list',
-                name: 'managerPrompt',
-                message: "Which manager do you want to view? (By employees)",
-                choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.first_name}`, value: employee.id })),
+                name: 'employeePrompt',
+                message: 'Which employee do you want to delete?',
+                choices: employees.map(employee => ({ name: `${employee.first_name} ${employee.last_name}`, value: employee.id })),
             }, ])
-        }, ).then(manageres => {
-            db.viewByManager(manageres.managerPrompt)
-                .then(([rows]) => {
-                    let employees = rows;
-                    console.table(employees);
-                }).then(() => newPrompt());
+        }, ).then(({ employeePrompt }) => {
+            db.deleteEmployee(employeePrompt)
+            console.log("Employee was deleted!")
+            newPrompt()
         })
 };
 
